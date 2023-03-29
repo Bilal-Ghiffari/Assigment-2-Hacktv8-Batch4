@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { useCurrency } from "./utils/customHooks/useCurrency";
 
 function App() {
+  const { data } = useCurrency();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="table-container">
+      <h1 className="heading">Table Currency</h1>
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Currency</th>
+            <th>We Buy</th>
+            <th>Exchange Rate</th>
+            <th>We Sell</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data?.map((cr, i) => (
+            <tr key={i}>
+              <td>{cr?.currency ?? "No Data"}</td>
+              <td>{cr.webuy ?? "No Data"}</td>
+              <td>{cr?.exchangerate ?? "No Data"}</td>
+              <td>{cr?.weshell ?? "No Data"}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
